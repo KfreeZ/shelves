@@ -1,0 +1,25 @@
+{
+  "name": "shelves",
+  "directory": "public/vendor",
+  "version": "0.0.0",
+  "homepage": "https://github.com/KfreeZ/shelves",
+  "authors": [
+    "kfreez <kfreec@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}
