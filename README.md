@@ -1,8 +1,8 @@
 how to use
 ----------
 
-###npm install
+npm install
 
-###bower install
+bower install
 
-###npm start
+npm start
