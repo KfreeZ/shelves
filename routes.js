@@ -30,10 +30,10 @@ module.exports = function(app) {
         }
     );
 
-    app.get('/signup',
+    app.get('/register',
         function(req, res) 
         {
-            res.render('signup', {  title: 'Signup', countries : CT });
+            res.render('register', {  title: 'register'});
         }
     );
     
