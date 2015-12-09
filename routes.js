@@ -30,14 +30,14 @@ module.exports = function(app) {
         }
     );
 
-    app.get('/register',
+    app.get('/SignUp',
         function(req, res) 
         {
-            res.render('register', {  title: 'register'});
+            res.render('signup', {  title: 'SignUp'});
         }
     );
     
-    app.post('/signup',
+    app.post('/SignUp',
         function(req, res)
         {
             AM.addNewAccount(
