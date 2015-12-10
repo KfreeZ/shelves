@@ -11,9 +11,10 @@ how to use
 	```
 	mongod --config ./mongod.conf  
 	```
-	> exe and conf are located in C:\Program Files\MongoDB\Server\3.0\bin\
+	> exe and conf are located in C:\Program Files\MongoDB\Server\3.0\bin\	
+	> mongod.conf：
+	
 	```
-	mongod.conf  
 		bind_ip = 127.0.0.1
 
 		dbpath = C:\mongodb\data\db
