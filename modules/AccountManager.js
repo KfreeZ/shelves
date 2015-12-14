@@ -24,7 +24,7 @@ var accounts = db.collection('accounts');
 
 exports.autoLogin = function(user, pass, callback)
 {
-    accounts.findOne({user:user}, function(e, o) {
+    accounts.findOne({user:email}, function(e, o) {
         if (o){
             o.pass == pass ? callback(o) : callback(null);
         }   else{
@@ -35,7 +35,7 @@ exports.autoLogin = function(user, pass, callback)
 
 exports.manualLogin = function(user, pass, callback)
 {
-    accounts.findOne({user:user}, function(e, o) {
+    accounts.findOne({user:email}, function(e, o) {
         if (o == null){
             callback('user-not-found');
         }   else{
@@ -54,21 +54,15 @@ exports.manualLogin = function(user, pass, callback)
 
 exports.addNewAccount = function(newData, callback)
 {
-    accounts.findOne({user:newData.user}, function(e, o) {
+    accounts.findOne({email:newData.email}, function(e, o) {
         if (o){
-            callback('username-taken');
+            callback('email-taken');
         }   else{
-            accounts.findOne({email:newData.email}, function(e, o) {
-                if (o){
-                    callback('email-taken');
-                }   else{
-                    saltAndHash(newData.pass, function(hash){
-                        newData.pass = hash;
-                    // append date stamp when record was created //
-                        newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-                        accounts.insert(newData, {safe: true}, callback);
-                    });
-                }
+            saltAndHash(newData.pass, function(hash){
+                newData.pass = hash;
+            // append date stamp when record was created //
+                newData.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+                accounts.insert(newData, {safe: true}, callback);
             });
         }
     });
@@ -76,10 +70,8 @@ exports.addNewAccount = function(newData, callback)
 
 exports.updateAccount = function(newData, callback)
 {
-    accounts.findOne({user:newData.user}, function(e, o){
+    accounts.findOne({user:newData.email}, function(e, o){
         o.name      = newData.name;
-        o.email     = newData.email;
-        o.country   = newData.country;
         if (newData.pass == ''){
             accounts.save(o, {safe: true}, function(err) {
                 if (err) callback(err);
