@@ -1,6 +1,6 @@
 'use strict';
 
-var AM = require('./modules/AccountManager')
+var AM = require('./models/AccountManager')
 
 module.exports = function(app) {
     app.get('/', 
@@ -13,14 +13,14 @@ module.exports = function(app) {
     app.post('/', 
         function(req, res)
         {
-            AM.manualLogin(req.body['user'], req.body['pass'],
+            AM.manualLogin(req.body['email'], req.body['pass'],
                 function(e, o){
                     if (!o){
                         res.status(400).send(e);
                     }   else{
-                        req.session.user = o;
+                        req.session.email = o;
                         if (req.body['remember-me'] == 'true'){
-                            res.cookie('user', o.user, { maxAge: 900000 });
+                            res.cookie('email', o.email, { maxAge: 900000 });
                             res.cookie('pass', o.pass, { maxAge: 900000 });
                         }
                         res.status(200).send(o);
@@ -47,6 +47,24 @@ module.exports = function(app) {
                     pass    : req.body['pass']
                     // country : req.body['country']
                 }, 
+                function(e)
+                {
+                    if (e){
+                        res.status(400).send(e);
+                    }   else{
+                        res.status(200).send('ok');
+                    }
+                }
+            );
+        }
+    );
+
+    app.post('/login',
+        function(req, res)
+        {
+            AM.manualLogin(
+                req.body['email'],
+                req.body['passwd'],
                 function(e)
                 {
                     if (e){

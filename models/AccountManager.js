@@ -35,9 +35,9 @@ exports.autoLogin = function(user, pass, callback)
 
 exports.manualLogin = function(user, pass, callback)
 {
-    accounts.findOne({user:email}, function(e, o) {
+    accounts.findOne({email:user}, function(e, o) {
         if (o == null){
-            callback('user-not-found');
+            callback('user: ' + user + ' -not-found');
         }   else{
             validatePassword(pass, o.pass, function(err, res) {
                 if (res){
@@ -70,7 +70,7 @@ exports.addNewAccount = function(newData, callback)
 
 exports.updateAccount = function(newData, callback)
 {
-    accounts.findOne({user:newData.email}, function(e, o){
+    accounts.findOne({email:newData.email}, function(e, o){
         o.name      = newData.name;
         if (newData.pass == ''){
             accounts.save(o, {safe: true}, function(err) {
@@ -89,9 +89,9 @@ exports.updateAccount = function(newData, callback)
     });
 }
 
-exports.updatePassword = function(email, newPass, callback)
+exports.updatePassword = function(user, newPass, callback)
 {
-    accounts.findOne({email:email}, function(e, o){
+    accounts.findOne({user:email}, function(e, o){
         if (e){
             callback(e, null);
         }   else{
