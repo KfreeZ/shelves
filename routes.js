@@ -11,15 +11,15 @@ module.exports = function(app) {
                 res.render('index', {title: 'Shelves'});
             } else {
                 // attempt automatic login //
-                AM.autoLogin(req.cookies.user, req.cookies.pass,
-                    function(o){
-                        if (o != null){
-                        req.session.user = o;
-                        res.redirect('/home');
-                    } else {
-                        res.render('index', {title: 'Shelves'});
-                    }
-                );
+                // AM.autoLogin(req.cookies.user, req.cookies.pass,
+                //     function(o){
+                //         if (o != null){
+                //         req.session.user = o;
+                //         res.redirect('/home');
+                //     } else {
+                //         res.render('index', {title: 'Shelves'});
+                //     }
+                // );
             }
         }
     );
