@@ -10,16 +10,17 @@ module.exports = function(app) {
             if (req.cookies.user == undefined || req.cookies.pass == undefined){
                 res.render('index', {title: 'Shelves'});
             } else {
-                // attempt automatic login //
-                // AM.autoLogin(req.cookies.user, req.cookies.pass,
-                //     function(o){
-                //         if (o != null){
-                //         req.session.user = o;
-                //         res.redirect('/home');
-                //     } else {
-                //         res.render('index', {title: 'Shelves'});
-                //     }
-                // );
+                // attempt automatic login
+                AM.autoLogin(req.cookies.user, req.cookies.pass,
+                    function(o){
+                        if (o != null){
+                            req.session.user = o;
+                            res.redirect('/home');
+                        } else {
+                            res.render('index', {title: 'Shelves'});
+                        }
+                    }
+                );
             }
         }
     );
@@ -46,14 +47,13 @@ module.exports = function(app) {
 
     app.get('/home',
         function(req, res) {
-            if (req.session.user == null){
+            if (req.session.email == null){
             // if user is not logged-in redirect back to login page //
                 res.redirect('/');
             } else {
                 res.render('home', {
-                    title : 'Control Panel',
-                    countries : CT,
-                    udata : req.session.user
+                    title : 'Shelves',
+                    udata : req.session.email
                 });
         }
     });
@@ -98,7 +98,7 @@ module.exports = function(app) {
                     if (e){
                         res.status(400).send(e);
                     }   else{
-                        res.redirect();
+                        res.redirect('/home');
                     }
                 }
             );
