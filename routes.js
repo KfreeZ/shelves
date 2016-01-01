@@ -87,21 +87,4 @@ module.exports = function(app) {
         }
     );
 
-    app.post('/login',
-        function(req, res)
-        {
-            AM.manualLogin(
-                req.body['email'],
-                req.body['passwd'],
-                function(e)
-                {
-                    if (e){
-                        res.status(400).send(e);
-                    }   else{
-                        res.redirect('/home');
-                    }
-                }
-            );
-        }
-    );
 };
