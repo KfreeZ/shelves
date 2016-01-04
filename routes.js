@@ -28,15 +28,17 @@ module.exports = function(app) {
     app.post('/', 
         function(req, res)
         {
-            AM.manualLogin(req.body['email'], req.body['pass'],
+            AM.manualLogin(req.body['email'], req.body['passwd'],
                 function(e, o){
                     if (!o){
                         res.status(400).send(e);
                     }   else{
-                        req.session.email = o;
+                        console.log(o);
+                        //dont konw how to handle session now
+                        //req.session.user = o;
                         if (req.body['remember-me'] == 'true'){
                             res.cookie('email', o.email, { maxAge: 900000 });
-                            res.cookie('pass', o.pass, { maxAge: 900000 });
+                            res.cookie('passwd', o.passwd, { maxAge: 900000 });
                         }
                         res.status(200).send(o);
                     }
