@@ -22,7 +22,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+  secret: 'recommand 128 bytes random string',
+  cookie: { maxAge: 60 * 1000 }
+}));
 
 module.exports = app;
 

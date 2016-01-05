@@ -33,9 +33,7 @@ module.exports = function(app) {
                     if (!o){
                         res.status(400).send(e);
                     }   else{
-                        console.log(o);
-                        //dont konw how to handle session now
-                        //req.session.user = o;
+                        req.session.user = o;
                         if (req.body['remember-me'] == 'true'){
                             res.cookie('email', o.email, { maxAge: 900000 });
                             res.cookie('passwd', o.passwd, { maxAge: 900000 });
