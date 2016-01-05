@@ -38,7 +38,7 @@ module.exports = function(app) {
                             res.cookie('email', o.email, { maxAge: 900000 });
                             res.cookie('passwd', o.passwd, { maxAge: 900000 });
                         }
-                        res.status(200).send(o);
+                        res.redirect('/home');
                     }
                 }
             );
@@ -47,13 +47,13 @@ module.exports = function(app) {
 
     app.get('/home',
         function(req, res) {
-            if (req.session.email == null){
+            if (req.session.user == null){
             // if user is not logged-in redirect back to login page //
                 res.redirect('/');
             } else {
                 res.render('home', {
-                    title : 'Shelves',
-                    udata : req.session.email
+                    title : 'Hi',
+                    udata : req.session.user
                 });
         }
     });
