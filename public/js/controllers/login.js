@@ -1,12 +1,10 @@
 $(document).ready(function(){
     var lv = new LoginValidator();
     // var lc = new LoginController();
-
 // main login form //
-    lv.showLoginError('xxx', 'loaded');
     $('#login-dropdown').ajaxForm({
         beforeSubmit : function(formData, jqForm, options){
-            lv.showLoginError('xxx', 'before');
+            alert("beforeSubmit");
             // if (lv.validateForm() == false){
             //     return false;
             // }   else{
@@ -19,8 +17,6 @@ $(document).ready(function(){
             lv.showLoginError('xxx', 'success');
             if (status == 'success') {
                 window.location.href = '/home'; 
-            } else {
-                lv.showLoginError('xxx', 'fail');
             }
         },
         error : function(e){
@@ -28,4 +24,4 @@ $(document).ready(function(){
         }
     }); 
     $('#user-tf').focus();
-}
+})

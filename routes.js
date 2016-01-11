@@ -8,8 +8,8 @@ module.exports = function(app) {
         {
             // check if the user's credentials are saved in a cookie //
             if (req.cookies.user == undefined || req.cookies.pass == undefined){
-                // res.render('index', {title: 'Shelves'});
-                res.sendfile('public/views/index.html');
+                res.render('index', {title: 'Shelves'});
+                // res.sendfile('public/views/index.html');
             } else {
                 // attempt automatic login
                 AM.autoLogin(req.cookies.user, req.cookies.pass,
