@@ -13,7 +13,7 @@ $(document).ready(function(){
             // }
         },
         success : function(responseText, status, xhr, $form){
-            alert("success");
+            // alert("success");
             if (status == 'success') {
                 window.location.href = '/home'; 
             }
