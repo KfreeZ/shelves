@@ -29,6 +29,7 @@ module.exports = function(app) {
     app.post('/', 
         function(req, res)
         {
+            console.log("post /" + req.body['email'] + ":" + req.body['passwd']);
             AM.manualLogin(req.body['email'], req.body['passwd'],
                 function(e, o){
                     if (!o){
@@ -39,7 +40,8 @@ module.exports = function(app) {
                             res.cookie('email', o.email, { maxAge: 900000 });
                             res.cookie('passwd', o.passwd, { maxAge: 900000 });
                         }
-                        res.redirect('/home');
+                        // res.redirect('/home');
+                        res.status(200).send('ok');
                     }
                 }
             );
