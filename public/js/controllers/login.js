@@ -1,9 +1,12 @@
 $(document).ready(function(){
+    // alert("ajax");
     var lv = new LoginValidator();
     // var lc = new LoginController();
+
 // main login form //
     $('#login-nav').ajaxForm({
         beforeSubmit : function(formData, jqForm, options){
+            // alert("before");
              // if (lv.validateForm() == false){
             //     return false;
             // }   else{
@@ -19,6 +22,7 @@ $(document).ready(function(){
             }
         },
         error : function(e){
+            // alert("fail");
             lv.showLoginError('Login Failure', 'Please check your username and/or password');
         }
     });

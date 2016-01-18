@@ -12,6 +12,7 @@ var session = require('express-session');
 var app = express();
 
 // view engine setup
+// I don't use Jade, but the views engine need to be configured
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
