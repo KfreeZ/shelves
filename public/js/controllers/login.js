@@ -19,8 +19,13 @@ $(document).ready(function(){
         success : function(responseText, status, xhr, $form){
             // alert("success");
             if (status == 'success') {
+                //jump
                 // window.location.href = '/home';
-                // alert(res.body); //res is not defined
+
+                //res is not defined
+                // alert(res.body);
+
+                // responseText is sent from server
                 $('.navbar-text').text('welcome ' + responseText);
 
                 // remove CSS class
@@ -29,8 +34,9 @@ $(document).ready(function(){
                 // modify attr
                 $('.dropdown-toggle').attr("aria-expanded",false);
 
-                //change text
-                $('.dropdown-toggle').text('options');
+                //use b selector to change text without cover the following span
+                $('.dropdown-toggle b').text('options');
+
             }
         },
         error : function(e){
