@@ -3,6 +3,7 @@ $(document).ready(function(){
     var lv = new LoginValidator();
     // var lc = new LoginController();
 
+
 // main login form //
     $('#login-nav').ajaxForm({
         beforeSubmit : function(formData, jqForm, options){
@@ -23,6 +24,7 @@ $(document).ready(function(){
         },
         error : function(e){
             // alert("fail");
+            // this must set in the LoginValidator, or the modal will not show, don't konw why yet
             lv.showLoginError('Login Failure', 'Please check your username and/or password');
         }
     });
