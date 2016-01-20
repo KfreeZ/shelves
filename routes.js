@@ -39,9 +39,11 @@ module.exports = function(app) {
                         if (req.body['remember-me'] == 'true'){
                             res.cookie('email', o.email, { maxAge: 900000 });
                             res.cookie('passwd', o.passwd, { maxAge: 900000 });
+                            res.cookie('name', o.name, { maxAge: 900000 });
                         }
                         // res.redirect('/home');
-                        res.status(200).send('ok');
+                        // console.log(res);
+                        res.status(200).send(o.name);
                     }
                 }
             );

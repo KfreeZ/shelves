@@ -19,7 +19,18 @@ $(document).ready(function(){
         success : function(responseText, status, xhr, $form){
             // alert("success");
             if (status == 'success') {
-                window.location.href = '/home'; 
+                // window.location.href = '/home';
+                // alert(res.body); //res is not defined
+                $('.navbar-text').text('welcome ' + responseText);
+
+                // remove CSS class
+                $('.dropdown').removeClass('open');
+
+                // modify attr
+                $('.dropdown-toggle').attr("aria-expanded",false);
+
+                //change text
+                $('.dropdown-toggle').text('options');
             }
         },
         error : function(e){
